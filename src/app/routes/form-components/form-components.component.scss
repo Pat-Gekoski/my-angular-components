@@ -1,0 +1,13 @@
+.component-controls {
+	display: flex;
+	align-items: center;
+	padding: 2rem;
+	margin-bottom: 2rem;
+	background-color: #fff;
+}
+
+.component-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	grid-gap: 2rem;
+}
