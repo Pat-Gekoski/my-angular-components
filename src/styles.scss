@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+	--input-bg-color: #eeeeee;
+	--input-icon-tint: #a7a7a7;
+	--valid-input-tint: #008000;
+	--invalid-input-tint: #ff0000;
+	--error-text-color: #ff0000;
+}
+
 *,
 *::after,
 *::before {
