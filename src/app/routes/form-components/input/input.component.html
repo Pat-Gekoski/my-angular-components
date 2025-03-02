@@ -1,24 +1,39 @@
 @if (label()) {
-	<div class="label-container">
-		<span class="label">{{ label() }}</span>
-		<div class="lock-container">
-			<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
-				<path
-					d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm240-200q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"
-				/>
-			</svg>
-		</div>
-	</div>
+	<app-input-label
+		[label]="label()"
+		[isDisabled]="isDisabled"
+		[isRequired]="isRequired"
+		[isActive]="isFocused() || hcd.control.value"
+		[useFloatingLabel]="useFloatingLabel()"
+	/>
 }
 
-<div class="input-container">
+<div class="input-container" [class]="{ invalid: isInvalid, disabled: isDisabled }">
 	<input
-		id=""
+		id="test"
 		type="text"
 		class="input"
+		[class]="{ 'animate-placeholder': useFloatingLabel() }"
 		[formControl]="hcd.control"
 		(input)="handleInputChange($event)"
 		(blur)="handleBlur()"
 		(focus)="handleFocus()"
+		(keydown)="handleKeydown($event)"
+		[placeholder]="placeholder()"
 	/>
+	@if (isDisabled) {
+		<div class="icon-container">
+			<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
+				<path
+					d="m480 880q-83 0-156-31.5-73-31.5-127-85.5-54-54-85.5-127-31.5-73-31.5-156 0-83 31.5-156 31.5-73 85.5-127 54-54 127-85.5 73-31.5 156-31.5 83 0 156 31.5 73 31.5 127 85.5 54 54 85.5 127 31.5 73 31.5 156 0 83-31.5 156-31.5 73-85.5 127-54 54-127 85.5-73 31.5-156 31.5zm0-80q54 0 104-17.5 50-17.5 92-50.5l-448-448q-33 42-50.5 92-17.5 50-17.5 104 0 134 93 227 93 93 227 93zm252-124q33-42 50.5-92 17.5-50 17.5-104 0-134-93-227-93-93-227-93-54 0-104 17.5-50 17.5-92 50.5z"
+				/>
+			</svg>
+		</div>
+	}
 </div>
+
+@if (showErrorMessage() && isInvalid && getErrorMessage()) {
+	<div class="error-container">
+		<span class="error">{{ getErrorMessage() }}</span>
+	</div>
+}

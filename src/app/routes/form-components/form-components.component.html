@@ -1,7 +1,36 @@
-<div class="component-controls">Add controls here</div>
+<div class="component-controls">
+	<label for="disabled-cb">
+		<input type="checkbox" id="disabled-cb" [(ngModel)]="isDisabled" (change)="onDisabledChanged($event)" />
+		Disabled
+	</label>
+	<label for="floating-label-cb">
+		<input type="checkbox" id="floating-label-cb" [(ngModel)]="useFloatingLabel" (change)="onFloatingLabelChanged($event)" />
+		Use Floating Label
+	</label>
+</div>
 
 <div class="component-grid" [formGroup]="form">
 	<app-component-card title="Text Input Component">
-		<app-input label="Username" formControlName="appInput" />
+		<app-input
+			label="Username"
+			formControlName="appInput"
+			[showErrorMessage]="true"
+			[errorMessages]="{ required: 'Username is required.' }"
+			placeholder="Enter your username"
+			[useFloatingLabel]="useFloatingLabel()"
+			inputIconColor="green"
+		/>
+	</app-component-card>
+	<app-component-card title="Next Component">
+		<!-- <app-input
+			label="Username"
+			formControlName="appInput"
+			[showErrorMessage]="true"
+			[errorMessages]="{ required: 'Username is required.' }"
+			placeholder="Enter your username"
+			[useFloatingLabel]="useFloatingLabel()"
+			inputValidColor="orange"
+			inputInvalidColor="blue"
+		/> -->
 	</app-component-card>
 </div>

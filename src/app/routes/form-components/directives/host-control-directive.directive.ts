@@ -50,11 +50,11 @@ export class HostControlDirective implements ControlValueAccessor {
 		}
 	}
 
-	writeValue() {}
-	registerOnChange() {}
-	registerOnTouched() {}
+	public writeValue() {}
+	public registerOnChange() {}
+	public registerOnTouched() {}
 
-	ngOnDestroy() {
+	public ngOnDestroy() {
 		this.subscription?.unsubscribe()
 	}
 }
