@@ -13,8 +13,8 @@ import { InputLabelComponent } from '../input-label/input-label.component'
 	hostDirectives: [HostControlDirective],
 })
 export class InputComponent implements OnInit {
-	public hcd = inject(HostControlDirective)
 	private el = inject(ElementRef)
+	public hcd = inject(HostControlDirective)
 	public label = input<string>()
 	public useFloatingLabel = input<boolean>(false)
 	public placeholder = input<string>('')
