@@ -10,6 +10,7 @@
 </div>
 
 <div class="component-grid" [formGroup]="form">
+	<!-- Input Component -->
 	<app-component-card title="Text Input Component">
 		<app-input
 			label="Username"
@@ -18,19 +19,23 @@
 			[errorMessages]="{ required: 'Username is required.' }"
 			placeholder="Enter your username"
 			[useFloatingLabel]="useFloatingLabel()"
-			inputIconColor="green"
 		/>
 	</app-component-card>
-	<app-component-card title="Next Component">
-		<!-- <app-input
-			label="Username"
-			formControlName="appInput"
+	<!-- Single Select Component -->
+	<app-component-card title="Single Select Component">
+		<app-single-select
+			label="Select a fruit"
+			formControlName="appSingleSelect"
 			[showErrorMessage]="true"
-			[errorMessages]="{ required: 'Username is required.' }"
-			placeholder="Enter your username"
+			[clearable]="true"
+			[errorMessages]="{ required: 'Fruit is required.' }"
+			[options]="[
+				{ label: 'Apple', value: 'apple' },
+				{ label: 'Banana', value: 'banana' },
+				{ label: 'Orange', value: 'orange' }
+			]"
+			placeholder="Select a fruit"
 			[useFloatingLabel]="useFloatingLabel()"
-			inputValidColor="orange"
-			inputInvalidColor="blue"
-		/> -->
+		/>
 	</app-component-card>
 </div>
