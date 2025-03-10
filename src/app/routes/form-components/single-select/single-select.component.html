@@ -1,0 +1,48 @@
+@if (label()) {
+	<app-input-label
+		[label]="label()"
+		[isDisabled]="isDisabled"
+		[isRequired]="isRequired"
+		[isActive]="isFocused() || hcd.control.value"
+		[useFloatingLabel]="useFloatingLabel()"
+	/>
+}
+
+<div class="input-container" [class]="{ invalid: isInvalid, focused: isFocused() }" (click)="onSelectDropdown()">
+	<div class="select-container" [class]="{ disabled: isDisabled }">
+		<select #hiddenSelect class="hidden-select" [formControl]="hcd.control" aria-hidden="true" [required]="isRequired">
+			@if (clearable()) {
+				<option [value]="">None</option>
+			}
+			@for (option of options(); track option.value) {
+				<option [value]="option.value">{{ option.label }}</option>
+			}
+		</select>
+
+		<div class="select-trigger" [style.color]="!formControl?.value ? '#757575' : 'var(--primary-text-color)'">
+			<span>{{ formControl?.value || placeholder() }}</span>
+		</div>
+		<div class="icon-wrapper" [class]="{ focused: isFocused(), disabled: isDisabled }">
+			@if (isDisabled) {
+				<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
+					<path
+						d="m480 880q-83 0-156-31.5-73-31.5-127-85.5-54-54-85.5-127-31.5-73-31.5-156 0-83 31.5-156 31.5-73 85.5-127 54-54 127-85.5 73-31.5 156-31.5 83 0 156 31.5 73 31.5 127 85.5 54 54 85.5 127 31.5 73 31.5 156 0 83-31.5 156-31.5 73-85.5 127-54 54-127 85.5-73 31.5-156 31.5zm0-80q54 0 104-17.5 50-17.5 92-50.5l-448-448q-33 42-50.5 92-17.5 50-17.5 104 0 134 93 227 93 93 227 93zm252-124q33-42 50.5-92 17.5-50 17.5-104 0-134-93-227-93-93-227-93-54 0-104 17.5-50 17.5-92 50.5z"
+					/>
+				</svg>
+			}
+		</div>
+	</div>
+
+	<div class="dropdown-content" [class.active]="isFocused()">
+		<ul class="options" [style.max-height]="listMaxHeight()">
+			@if (clearable()) {
+				<li class="list-item no-select" (click)="onClearSelection($event)">None</li>
+			}
+			@for (option of options(); track option.value) {
+				<li class="list-item no-select" [class.disabled]="option.disabled" (click)="onSelectOption($event, option)">
+					{{ option.label }}
+				</li>
+			}
+		</ul>
+	</div>
+</div>

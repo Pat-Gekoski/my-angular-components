@@ -42,7 +42,7 @@
 		background-color: var(--invalid-input-tint);
 	}
 
-	&:has(input:focus)::after {
+	&:focus-within::after {
 		transform: scale(1);
 	}
 
@@ -71,7 +71,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 10px;
 		padding: 5px;
 		height: 100%;
 		aspect-ratio: 1;
